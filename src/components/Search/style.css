@@ -1,0 +1,77 @@
+@keyframes cw-spin {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #f8f8f8;
+  box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.648);
+  border-radius: 30px;
+  height: 50px;
+  margin: 20px auto;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 600px;
+  width: 100%;
+  color: #121212;
+  overflow: hidden;
+
+  input[type="text"] {
+    all: unset;
+    box-sizing: border-box;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    padding-inline: 20px;
+    font-weight: 600;
+    font-family: inherit;
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+
+  .clear-all {
+    display: grid;
+    place-content: center;
+    padding: 5px;
+    margin-inline: 4px;
+    border-radius: 50%;
+
+    &:hover {
+      transition: background-color ease 200ms;
+      cursor: pointer;
+      background-color: #0000001c;
+    }
+  }
+  .loading {
+    height: 100%;
+    display: grid;
+    place-content: center;
+    padding-inline: 12px 15px;
+
+    .cw-spin-animation {
+      animation: cw-spin linear 800ms infinite;
+    }
+  }
+  .search-button {
+    cursor: pointer;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    padding-inline: 12px 15px;
+
+    &:hover {
+      transition: background-color ease 200ms;
+      background-color: #0000001c;
+    }
+  }
+}
