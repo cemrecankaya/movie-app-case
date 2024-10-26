@@ -3,21 +3,23 @@ import { IMovie } from "components/MovieList/MovieCard/MovieCard";
 import Search from "components/Search";
 import { parse } from "date-fns";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Service from "service";
 import { Type } from "service/types";
 import "./style.css";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 import { setMovies } from "./store/moviesSlice";
+import Select from "components/Select/Select";
 
 function App() {
   const dispatcher = useAppDispatch();
   const movies = useAppSelector((state) => state.movies);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   //#region States
   const navigate = useNavigate();
   let [loading, setLoading] = useState<boolean>(false);
-  let [searchText, setSearchText] = useState<string>("Pokemon");
+  let [searchText, setSearchText] = useState<string>("");
   let [type, setType] = useState<Type>(Type.Movie);
   let [year, setYear] = useState<string>(new Date().getFullYear().toString());
   // let [movies, setMovies2] = useState<IMovie[]>([]);
@@ -93,8 +95,8 @@ function App() {
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchText(e.target.value);
   }
-  function handleSearch(_searchText: string = searchText) {
-    setLoading(true);
+  function handleSearch(_searchText: string = searchText, _loading: boolean = true) {
+    setLoading(_loading);
 
     Service.getMoviesBySearch({ s: _searchText, type, y: "" })
       .then((res) => {
@@ -114,17 +116,6 @@ function App() {
               )
             )
           );
-          setMovies(
-            res.data.Search.map(
-              (movie) =>
-                ({
-                  id: movie.imdbID,
-                  title: movie.Title,
-                  poster: movie.Poster,
-                  year: movie.Year ? parse(movie.Year, "yyyy", new Date()) : undefined,
-                } as IMovie)
-            ) || []
-          );
         } else setMovies([]);
       })
       .finally(() => {
@@ -139,13 +130,20 @@ function App() {
 
   //#region Helpers
   function setParam(paramKey: string, paramValue: string) {
-    const newUrl = paramValue ? `${window.location.pathname}?${paramKey}=${paramValue}` : window.location.pathname;
-    navigate(newUrl, { replace: true });
+    if (paramValue === "") {
+      searchParams.delete(paramKey);
+      setSearchParams(searchParams);
+      return;
+    }
+    searchParams.set(paramKey, paramValue);
+    setSearchParams(searchParams);
   }
   //#endregion
 
   useEffect(() => {
-    handleSearch(searchText);
+    let urlSearchText = searchParams.get("search");
+    setSearchText(urlSearchText || "Pokemon");
+    handleSearch(urlSearchText || "Pokemon");
   }, []);
 
   return (
@@ -162,7 +160,9 @@ function App() {
           onSearch={handleSearch}
           onClear={handleClear}
         />
+        <div className="settings"></div>
       </div>
+
       <div className="content">
         <MovieList data={movies.movies} />
       </div>

@@ -1,4 +1,4 @@
-import { Axios, AxiosError, AxiosResponse } from "axios";
+import { Axios, AxiosResponse } from "axios";
 import {
   IGetMovieByIdorByTitleResponse,
   IGetMovieByIdParams,
