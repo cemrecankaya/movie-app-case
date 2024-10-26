@@ -132,10 +132,9 @@ function App() {
   function setParam(paramKey: string, paramValue: string) {
     if (paramValue === "") {
       searchParams.delete(paramKey);
-      setSearchParams(searchParams);
-      return;
+    } else {
+      searchParams.set(paramKey, paramValue);
     }
-    searchParams.set(paramKey, paramValue);
     setSearchParams(searchParams);
   }
   //#endregion

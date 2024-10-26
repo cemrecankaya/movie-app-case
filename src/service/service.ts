@@ -8,8 +8,8 @@ import {
   IGetMoviesBySearchResponse,
 } from "./types";
 
-const baseUrl = "http://www.omdbapi.com";
-const imgUrl = "http://img.omdbapi.com";
+const baseUrl = "https://www.omdbapi.com";
+const imgUrl = "https://img.omdbapi.com";
 
 let baseApi = new Axios({
   baseURL: baseUrl,
