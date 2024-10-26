@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
+import Option from "./Option/Option";
+import "./style.css";
 
-export interface ISelectProps {
-  value: string;
-}
+function Select({ value, children, onChange, ...props }: React.HTMLProps<HTMLSelectElement>) {
+  const selectRef = useRef<HTMLSelectElement>(null);
 
-export default function Select({ value }: ISelectProps) {
+  function handleSelectMiddleware(e: React.SyntheticEvent<HTMLSelectElement, Event>) {
+    e.preventDefault();
+    onChange?.(e);
+    selectRef.current?.blur();
+  }
+
   return (
-    <div className="select-container">
-      <div className="value">{value}</div>
-    </div>
+    <select ref={selectRef} className="select" value={value} onChange={handleSelectMiddleware} {...props}>
+      {children}
+    </select>
   );
 }
+
+Select.Option = Option;
+
+export default Select;

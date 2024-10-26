@@ -2,23 +2,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 20px;
-  padding: 20px;
   width: 100%;
-  max-width: 1450px;
   align-self: center;
   box-sizing: border-box;
   place-items: center;
 }
-@media (max-width: 600px) {
-  .movie-list {
-    padding: 30px;
-  }
-}
-@media (max-width: 1080px) {
-  .movie-list {
-    max-width: 1450px;
-  }
-}
+
 .empty-list {
   font-size: 20px;
 }

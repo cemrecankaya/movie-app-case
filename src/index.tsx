@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import "./global.style.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "pages/App";
 import Movies from "pages/Movies";
 import { Provider } from "react-redux";
 import { store } from "store/store";
@@ -21,5 +20,3 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-
-reportWebVitals();

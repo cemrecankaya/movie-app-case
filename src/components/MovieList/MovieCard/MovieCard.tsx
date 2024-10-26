@@ -22,13 +22,24 @@ export default function MovieCard({ onClick, movie }: IMovieCardProps) {
 
   return (
     <div className="movie-card" onClick={handleClick}>
-      <div className="movie-card-header">{movie.title} </div>
-      <img className="movie-poster" src={movie.poster} alt={movie.id} />
-      <div className="movie-card-information">
-        <div className="movie-card-title">
-          {movie.title}&nbsp;
-          {movie.year && format(movie.year, "(yyyy)")}
+      <img className="movie-poster" loading="lazy" title={movie.title} src={movie.poster} alt={movie.id} />
+      <div className="movie-information">
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <div className="movie-id">
+            ID: <b>{movie.id.toUpperCase()}</b>
+          </div>
+          <div className="movie-year">
+            Year: <b>{movie.year ? format(movie.year, "yyyy") : "-"}</b>
+          </div>
         </div>
+        <div className="movie-title">{movie.title}</div>
       </div>
     </div>
   );

@@ -35,6 +35,7 @@ export default function Search({ loading, value, defaultValue, onClear, onSearch
         disabled={loading}
         type="text"
         value={value}
+        spellCheck={false}
         defaultValue={defaultValue}
         onChange={handleChange}
       />
@@ -50,7 +51,7 @@ export default function Search({ loading, value, defaultValue, onClear, onSearch
         </div>
       ) : (
         <div className="search-button" onClick={handleSearch}>
-          <LucideSearch size={20} strokeWidth={2} />
+          <LucideSearch size={20} style={{ transform: "translate(1px , 1px)" }} strokeWidth={2} />
         </div>
       )}
     </div>

@@ -1,26 +1,15 @@
 .movie-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   aspect-ratio: 2/3;
   display: flex;
-  border-radius: 2px;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  transition: transform ease 200ms;
+  transition: all ease 300ms;
 
-  > .movie-card-header {
-    position: absolute;
-    background-color: #262626cd;
-    width: 100%;
-    font-weight: bold;
-    height: fit-content;
-    box-sizing: border-box;
-    text-align: center;
-    font-size: 13px;
-    padding: 8px;
-    opacity: 0;
-    visibility: hidden;
+  @media (max-width: 430px) {
+    max-width: unset;
   }
 
   > .movie-poster {
@@ -28,39 +17,59 @@
     height: 100%;
     overflow: hidden;
     box-sizing: border-box;
-    background-color: #e1e1e1;
+    background-color: #cbcbcb;
     object-fit: cover;
+    transition: all ease 300ms;
   }
 
-  > .movie-card-information {
+  > .movie-information {
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     left: 0px;
     right: 0px;
-    min-height: 30%;
+    padding: 18px;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
     height: fit-content;
-    padding: 10px;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.9);
-    transition: all ease 200ms;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    transition: all ease 300ms;
     opacity: 0;
     visibility: hidden;
 
-    > .movie-card-title {
-      margin-inline: 1%;
-      font-size: 1rem;
+    .movie-id {
+      font-weight: 300;
+      font-size: 0.7rem;
+      > b {
+        font-size: 0.75rem;
+      }
+    }
+    .movie-year {
+      font-weight: 300;
+      font-size: 0.7rem;
+      > b {
+        font-size: 0.75rem;
+      }
+    }
+    .movie-title {
+      font-size: 1.1rem;
+      margin-block: 10px;
       text-align: center;
-      font-weight: 500;
+      font-weight: bold;
     }
   }
 
   &:hover {
-    transform: scale(1.03);
     cursor: pointer;
 
-    .movie-card-information {
+    .movie-information {
       opacity: 1;
       visibility: visible;
+    }
+    .movie-poster {
+      scale: 1.02;
     }
   }
 }

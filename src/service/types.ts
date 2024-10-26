@@ -1,3 +1,7 @@
+export enum Layout {
+  Table = "table",
+  Grid = "grid",
+}
 /** Request Type. */
 export enum Type {
   Movie = "movie",
