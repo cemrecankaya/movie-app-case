@@ -1,6 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import "./style.scss";
+import Button from "@components/Button";
+import MovieList from "@components/MovieList";
+import { IMovie } from "@components/MovieList/MovieCard/MovieCard";
+import Search from "@components/Search";
+import Select from "@components/Select";
+import { Service } from "@service/service";
+import { Layout, Type } from "@service/types";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
+import { setMovies } from "@store/slices/moviesSlice";
 import {
   LucideChevronsLeft,
   LucideChevronsRight,
@@ -8,15 +14,9 @@ import {
   LucideLayoutGrid,
   LucideTableProperties,
 } from "lucide-react";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import Button from "@components/Button";
-import MovieList from "@components/MovieList";
-import { IMovie } from "@components/MovieList/MovieCard/MovieCard";
-import Select from "@components/Select";
-import Search from "@components/Search";
-import { Service } from "@service/service";
-import { Layout, Type } from "@service/types";
-import { setMovies } from "@store/slices/moviesSlice";
+import React, { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import "./style.scss";
 
 function App() {
   const dispatcher = useAppDispatch();
@@ -25,7 +25,6 @@ function App() {
   const currentYear = new Date().getFullYear();
 
   //#region States
-  const contentRef = useRef<HTMLDivElement>(null);
   let [initial, setInitial] = useState<boolean>(true);
   let [loading, setLoading] = useState<boolean>(false);
   let [searchText, setSearchText] = useState<string>(searchParams.get("search") || "Pokemon");
@@ -102,6 +101,7 @@ function App() {
   //#endregion
 
   //#region Helpers
+
   function setParam(paramKey: string, paramValue: string) {
     if (paramValue === "") {
       searchParams.delete(paramKey);
@@ -117,7 +117,7 @@ function App() {
   }, [currentPage, year, type]);
 
   useEffect(() => {
-    handleSearch(searchText, true, 1);
+    handleSearch();
     setInitial(false);
   }, []);
 
@@ -126,7 +126,7 @@ function App() {
       <header className="app-header">
         <h1>
           <LucideFilm
-            size={80}
+            size={70}
             fill="var(--text-primary-color)"
             strokeWidth={1.5}
             stroke="var(--text-secondary-color)"
@@ -172,7 +172,7 @@ function App() {
         </Button>
       </div>
 
-      <div ref={contentRef} className="app-content">
+      <div className="app-content">
         <MovieList data={movies.movies} loading={loading} />
       </div>
 

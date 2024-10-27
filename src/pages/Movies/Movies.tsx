@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import PosterNotFound from "@assets/poster-not-found-1.png";
+import Button from "@components/Button";
 import { Service } from "@service/service";
-import "./style.scss";
+import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { clearMovieDetail, setMovieDetail } from "@store/slices/movieDetailSlice";
 import { format } from "date-fns";
-import Button from "@components/Button";
 import { LucideChevronLeft } from "lucide-react";
-import PosterNotFound from "@assets/poster-not-found-1.png";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import "./style.scss";
 
 function Movies() {
   const dispatcher = useAppDispatch();
@@ -161,7 +161,9 @@ function Movies() {
               <div className="section">
                 <label htmlFor="release">Release date:</label>
                 <span id="release" className="value">
-                  {movie?.Released ? format(new Date(movie.Released), "dd MMMM yyyy") : "-"}
+                  {movie?.Released && movie?.Released !== "N/A"
+                    ? format(new Date(movie.Released), "dd MMMM yyyy")
+                    : "-"}
                 </span>
               </div>
             )}

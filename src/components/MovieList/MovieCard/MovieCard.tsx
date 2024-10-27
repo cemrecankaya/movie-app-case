@@ -40,13 +40,7 @@ export default function MovieCard({ onClick, movie, skeleton }: IMovieCardProps)
         </div>
       ) : (
         <>
-          <img
-            className="movie-poster"
-            loading="lazy"
-            title={movie?.title || ""}
-            src={movie?.poster || PosterNotFound}
-            alt={movie?.id || ""}
-          />
+          <img className="movie-poster" loading="lazy" src={movie?.poster || PosterNotFound} alt={movie?.id || ""} />
           <div className="movie-information">
             <div
               style={{

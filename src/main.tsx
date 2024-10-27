@@ -6,6 +6,7 @@ import "./global.style.scss";
 import App from "@pages/App";
 import Movies from "@pages/Movies";
 import { store } from "@store/store";
+import { ScrollRestoration } from "react-router-dom";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
