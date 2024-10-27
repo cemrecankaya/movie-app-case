@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./style.scss";
 import { LoaderCircle, LucideSearch, LucideX } from "lucide-react";
 
 export interface ISearchProps {
@@ -15,7 +15,7 @@ export default function Search({ loading, value, defaultValue, onClear, onSearch
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     onChange?.(e);
   }
-  function handleClear(e: React.MouseEvent<HTMLInputElement>) {
+  function handleClear(_e: React.MouseEvent<HTMLInputElement>) {
     onClear?.();
   }
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -23,7 +23,7 @@ export default function Search({ loading, value, defaultValue, onClear, onSearch
       !loading && onSearch?.(value);
     }
   }
-  function handleSearch(e: React.MouseEvent<HTMLInputElement>) {
+  function handleSearch(_e: React.MouseEvent<HTMLInputElement>) {
     !loading && onSearch?.(value);
   }
 

@@ -13,12 +13,12 @@ const imgUrl = "https://img.omdbapi.com";
 
 let baseApi = new Axios({
   baseURL: baseUrl,
-  params: { apikey: process.env.REACT_APP_API_KEY },
+  params: { apikey: import.meta.env.VITE_API_KEY },
   transformResponse: (data) => JSON.parse(data),
 });
 let imgApi = new Axios({
   baseURL: imgUrl,
-  params: { apikey: process.env.REACT_APP_API_KEY },
+  params: { apikey: import.meta.env.VITE_API_KEY },
   transformResponse: (data) => JSON.parse(data),
 });
 

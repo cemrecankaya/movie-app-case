@@ -1,18 +1,23 @@
-.container {
-  min-height: 100vh;
-  max-width: 100vw;
-  box-sizing: border-box;
-  color: #e1e1e1;
+.app-container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  width: 100%;
 }
 
-.header {
+header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-right: 40px;
+  }
 }
 
 .search {
@@ -46,6 +51,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  flex: 1;
   align-self: center;
   max-width: 1450px;
   box-sizing: border-box;

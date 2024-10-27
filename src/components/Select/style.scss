@@ -1,14 +1,35 @@
+.select-wrapper {
+  position: relative;
+  cursor: pointer;
+  width: fit-content;
+  color: var(--text-secondary-color);
+  height: 50px;
+
+  .select-arrow {
+    position: absolute;
+    color: var(--text-secondary-color);
+    right: 0;
+    top: 0;
+    padding-inline: 4px;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+}
+
 .select {
+  appearance: none;
+  -webkit-appearance: none;
   cursor: pointer;
   text-align: center;
   display: flex;
   flex-direction: row;
   background-color: #f8f8f8;
-  height: 50px;
+  height: 100%;
   width: fit-content;
-  color: var(--text-secondary-color);
   box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.648);
-  padding: 0px 10px 0px 10px;
+  padding: 0px 35px 0px 15px;
   border: 1px solid var(--border-primary-color);
   align-items: center;
   font-size: 16px;

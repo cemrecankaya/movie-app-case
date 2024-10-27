@@ -1,5 +1,5 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import "./style.css";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import "./style.scss";
 
 export interface IButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   isStatic?: boolean;

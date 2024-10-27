@@ -1,14 +1,15 @@
 import React, { memo } from "react";
+import { useNavigate } from "react-router-dom";
+import "./style.scss";
 import MovieCard from "./MovieCard";
 import { IMovie } from "./MovieCard/MovieCard";
-import { useNavigate } from "react-router-dom";
-import "./style.css";
 
 export type IMovieListProps = {
   data: IMovie[];
+  loading?: boolean;
 };
 
-function MovieList({ data }: IMovieListProps) {
+function MovieList({ data, loading }: IMovieListProps) {
   const navigate = useNavigate();
 
   function handleClick(id: string) {
@@ -23,7 +24,9 @@ function MovieList({ data }: IMovieListProps) {
 
   return (
     <div className="movie-list">
-      {data.length ? (
+      {loading ? (
+        Array.from({ length: 10 }, (e, i) => (e = i)).map((_e) => <MovieCard key={_e} skeleton />)
+      ) : data.length ? (
         data.map((movie) => <MovieCard movie={movie} key={movie.id} onClick={handleClick(movie.id)} />)
       ) : (
         <div className="empty-list">Sorry, No data found.</div>
