@@ -12,15 +12,6 @@ body {
   width: 100%;
   box-sizing: border-box;
   position: relative;
-  // &:before {
-  //   content: " ";
-  //   position: absolute;
-  //   inset: 0;
-  //   z-index: -1;
-  //   background: url(/src/assets/bg1.png);
-  //   background-size: calc(400px);
-  //   filter: blur(3px);
-  // }
   background-color: var(--bg-primary-color);
   color: var(--text-primary-color);
   margin: 0;

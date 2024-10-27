@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { setMovies } from "@store/slices/moviesSlice";
 import { LucideChevronsLeft, LucideChevronsRight, LucideFilm } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./style.scss";
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
   const movies = useAppSelector((state) => state.movies);
   const [searchParams, setSearchParams] = useSearchParams();
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
 
   //#region States
   let [initial, setInitial] = useState<boolean>(true);
@@ -105,14 +106,19 @@ function App() {
   }, [currentPage, year, type]);
 
   useEffect(() => {
-    handleSearch();
     setInitial(false);
+    handleSearch();
   }, []);
 
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>
+        <h1
+          onClick={() => {
+            navigate("/", { replace: true, preventScrollReset: true });
+            window.location.reload();
+          }}
+        >
           <LucideFilm
             size={70}
             fill="var(--text-primary-color)"

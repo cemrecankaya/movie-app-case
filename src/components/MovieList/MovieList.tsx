@@ -17,7 +17,7 @@ function MovieList({ data, loading }: IMovieListProps) {
       e.preventDefault();
 
       if (id) {
-        navigate(`/movies?id=${id}`);
+        navigate(`/movies?id=${id}`, { replace: true });
         window.scrollTo(0, 0);
       }
     };

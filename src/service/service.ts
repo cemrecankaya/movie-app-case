@@ -11,12 +11,13 @@ import {
 const baseUrl = "https://www.omdbapi.com";
 const imgUrl = "https://img.omdbapi.com";
 
-let baseApi = new Axios({
+const baseApi = new Axios({
   baseURL: baseUrl,
   params: { apikey: import.meta.env.VITE_API_KEY },
   transformResponse: (data) => JSON.parse(data),
 });
-let imgApi = new Axios({
+
+const imgApi = new Axios({
   baseURL: imgUrl,
   params: { apikey: import.meta.env.VITE_API_KEY },
   transformResponse: (data) => JSON.parse(data),

@@ -35,6 +35,7 @@ function Movies() {
   function handleBack() {
     navigate(-1);
   }
+
   useEffect(() => {
     let id = searchParams.get("id");
     if (id) getDetail(id);
@@ -60,8 +61,7 @@ function Movies() {
       <div className="movie-detail-header">
         {loading ? (
           <>
-            <div className="skeleton" style={{ width: "80%", height: "100px" }} />
-            <div className="skeleton" style={{ width: "20%", height: "100px" }} />
+            <div className="skeleton" style={{ width: "100%", height: "100px" }} />
           </>
         ) : (
           <>
@@ -84,11 +84,12 @@ function Movies() {
             className="skeleton"
             style={{ maxWidth: "300px", width: "100%", aspectRatio: "2/3", height: "fit-content" }}
           />
-        ) : movie?.Poster !== "N/A" && movie?.Poster ? (
+        ) : movie?.Poster && movie?.Poster !== "N/A" ? (
           <img className="movie-detail-poster" src={movie?.Poster} alt={movie?.Poster} />
         ) : (
           <img className="movie-detail-poster" src={PosterNotFound} alt={movie?.Poster} />
         )}
+
         <div className="movie-detail-information">
           {loading ? (
             <div className="skeleton" style={{ width: "100%", height: "60px" }} />
@@ -97,6 +98,7 @@ function Movies() {
               <span className="value">{movie?.Plot || "-"}</span>
             </div>
           )}
+
           <div className="divider" />
 
           {loading ? (
@@ -216,6 +218,7 @@ function Movies() {
               </span>
             </div>
           )}
+
           {loading ? (
             <div className="skeleton" style={{ width: "100%", height: "30px" }} />
           ) : (
