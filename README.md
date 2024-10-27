@@ -12,3 +12,11 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+## Redux and Redux Toolkit were used for state management.
+
+## Lucide Icons was used for the icons.
+
+## date-fns was used to format the date.
+
+## react-router-dom was used for routing between pages.

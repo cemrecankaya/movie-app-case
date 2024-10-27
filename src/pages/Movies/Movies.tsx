@@ -65,11 +65,13 @@ function Movies() {
           </>
         ) : (
           <>
-            <h1>{movie?.Title}</h1>
+            <h1>
+              {movie?.Title} {movie?.Year && movie?.Year !== "N/A" ? `(${movie?.Year})` : ""}
+            </h1>
             <div className="movie-ratings">
               <label htmlFor="ratings">IMDB Ratings</label>
               <span id="ratings">
-                {movie?.imdbRating}&nbsp; <span>/10</span>
+                {movie?.imdbRating}&nbsp;{movie?.imdbRating !== "N/A" && <span>/10</span>}
               </span>
             </div>
           </>

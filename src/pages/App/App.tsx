@@ -4,17 +4,11 @@ import { IMovie } from "@components/MovieList/MovieCard/MovieCard";
 import Search from "@components/Search";
 import Select from "@components/Select";
 import { Service } from "@service/service";
-import { Layout, Type } from "@service/types";
+import { Type } from "@service/types";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { setMovies } from "@store/slices/moviesSlice";
-import {
-  LucideChevronsLeft,
-  LucideChevronsRight,
-  LucideFilm,
-  LucideLayoutGrid,
-  LucideTableProperties,
-} from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { LucideChevronsLeft, LucideChevronsRight, LucideFilm } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./style.scss";
 
@@ -30,16 +24,14 @@ function App() {
   let [searchText, setSearchText] = useState<string>(searchParams.get("search") || "Pokemon");
   let [type, setType] = useState<Type>((searchParams.get("type") as Type) || Type.Movie);
   let [year, setYear] = useState<string>(searchParams.get("year") || "");
-  let [layout, setLayout] = useState<Layout>(Layout.Table);
   let [currentPage, setCurrentPage] = useState<number>(() => {
     const page = searchParams.get("page");
     return page ? parseInt(page) : 1;
   });
-
   //#endregion
 
   //#region Handlers
-  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleSearchOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchText(e.target.value);
   }
   function handleSearch(_searchText: string = searchText, _loading: boolean = true, _page: number = currentPage) {
@@ -53,10 +45,9 @@ function App() {
         setParam("year", year);
         setParam("page", _page.toString());
 
-        if (res.data.Response === "True") {
-          dispatcher(
-            setMovies(
-              res.data.Search.map(
+        const response =
+          res.data.Response === "True"
+            ? res.data.Search.map(
                 (movie) =>
                   ({
                     id: movie.imdbID,
@@ -65,9 +56,9 @@ function App() {
                     year: movie.Year || undefined,
                   } as IMovie)
               )
-            )
-          );
-        } else dispatcher(setMovies([]));
+            : [];
+
+        dispatcher(setMovies(response));
       })
       .finally(() => {
         setLoading(false);
@@ -75,7 +66,6 @@ function App() {
   }
   function handleClear() {
     setSearchText("");
-    handleSearch("", false, 1);
   }
   function handleChangeType(e: React.ChangeEvent<HTMLSelectElement>) {
     setCurrentPage(1);
@@ -85,9 +75,7 @@ function App() {
     setCurrentPage(1);
     setYear(e.target.value);
   }
-  function handleChangeLayout() {
-    setLayout(layout === Layout.Grid ? Layout.Table : Layout.Grid);
-  }
+
   function handleBackPage() {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -140,7 +128,7 @@ function App() {
           value={searchText}
           loading={loading}
           onSearch={() => handleSearch(searchText, true, 1)}
-          onChange={handleOnChange}
+          onChange={handleSearchOnChange}
           onClear={handleClear}
         />
       </div>
@@ -162,14 +150,6 @@ function App() {
             </Select.Option>
           ))}
         </Select>
-
-        <Button tabIndex={0} title="Change Grid" onClick={handleChangeLayout}>
-          {layout === Layout.Grid ? (
-            <LucideTableProperties style={{ rotate: "180deg" }} size={26} />
-          ) : (
-            <LucideLayoutGrid size={26} />
-          )}
-        </Button>
       </div>
 
       <div className="app-content">

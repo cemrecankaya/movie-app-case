@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { IGetMovieByIdorByTitleResponse } from "@service/types";
 
 interface MoviesState {
-  movie: IGetMovieByIdorByTitleResponse | undefined;
+  movie?: IGetMovieByIdorByTitleResponse;
 }
 
 const initialState: MoviesState = {
