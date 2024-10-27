@@ -1,6 +1,6 @@
+import PosterNotFound from "@assets/poster-not-found-1.png";
 import React from "react";
 import "./style.scss";
-import PosterNotFound from "@assets/poster-not-found-1.png";
 
 export interface IMovie {
   id: string;

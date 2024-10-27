@@ -7,7 +7,7 @@
   }
 }
 
-.input-container {
+.search-input-container {
   display: flex;
   flex-direction: row;
   background-color: #f2f2f2;
@@ -26,7 +26,7 @@
     outline: 1px solid var(--border-secondary-color);
   }
 
-  input[type="text"] {
+  > input[type="text"] {
     all: unset;
     box-sizing: border-box;
     font-size: 16px;
@@ -43,7 +43,7 @@
     }
   }
 
-  .clear-all {
+  > .clear-all {
     display: grid;
     place-content: center;
     padding-inline: 10px;
@@ -55,7 +55,7 @@
       background-color: #0000001c;
     }
   }
-  .loading {
+  > .loading {
     height: 100%;
     display: grid;
     place-content: center;
@@ -65,7 +65,7 @@
       animation: cw-spin linear 800ms infinite;
     }
   }
-  .search-button {
+  > .search-button {
     cursor: pointer;
     height: 100%;
     display: grid;

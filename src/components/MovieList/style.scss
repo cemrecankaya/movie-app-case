@@ -6,8 +6,7 @@
   align-self: center;
   box-sizing: border-box;
   place-items: center;
-}
-
-.empty-list {
-  font-size: 20px;
+  > .movie-list-empty {
+    font-size: 20px;
+  }
 }

@@ -1,11 +1,11 @@
-.select-wrapper {
+.custom-select-wrapper {
   position: relative;
   cursor: pointer;
   width: fit-content;
   color: var(--text-secondary-color);
   height: 50px;
 
-  .select-arrow {
+  > .select-arrow {
     position: absolute;
     color: var(--text-secondary-color);
     right: 0;
@@ -18,7 +18,7 @@
   }
 }
 
-.select {
+.custom-select {
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;

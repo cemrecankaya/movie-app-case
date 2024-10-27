@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./style.scss";
 import {
@@ -25,6 +25,7 @@ function App() {
   const currentYear = new Date().getFullYear();
 
   //#region States
+  const contentRef = useRef<HTMLDivElement>(null);
   let [initial, setInitial] = useState<boolean>(true);
   let [loading, setLoading] = useState<boolean>(false);
   let [searchText, setSearchText] = useState<string>(searchParams.get("search") || "Pokemon");
@@ -101,7 +102,6 @@ function App() {
   //#endregion
 
   //#region Helpers
-
   function setParam(paramKey: string, paramValue: string) {
     if (paramValue === "") {
       searchParams.delete(paramKey);
@@ -117,13 +117,13 @@ function App() {
   }, [currentPage, year, type]);
 
   useEffect(() => {
-    handleSearch();
+    handleSearch(searchText, true, 1);
     setInitial(false);
   }, []);
 
   return (
     <div className="app-container">
-      <header>
+      <header className="app-header">
         <h1>
           <LucideFilm
             size={80}
@@ -135,7 +135,7 @@ function App() {
         </h1>
       </header>
 
-      <div className="search">
+      <div className="app-search">
         <Search
           value={searchText}
           loading={loading}
@@ -145,7 +145,7 @@ function App() {
         />
       </div>
 
-      <div className="settings">
+      <div className="app-settings">
         <Select value={type} onChange={handleChangeType}>
           <Select.Option value={Type.Movie}>Movies</Select.Option>
           <Select.Option value={Type.Series}>Tv Series</Select.Option>
@@ -172,11 +172,11 @@ function App() {
         </Button>
       </div>
 
-      <div className="content">
+      <div ref={contentRef} className="app-content">
         <MovieList data={movies.movies} loading={loading} />
       </div>
 
-      <div className="controllers">
+      <div className="app-controllers">
         <Button tabIndex={0} title="Previous Page" disabled={currentPage <= 1 || loading} onClick={handleBackPage}>
           <LucideChevronsLeft size={26} />
         </Button>

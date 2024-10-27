@@ -3,7 +3,7 @@ import "./style.scss";
 
 export default function Option({ children, ...props }: React.HTMLProps<HTMLOptionElement>) {
   return (
-    <option className="option" {...props}>
+    <option className="custom-option" {...props}>
       {children}
     </option>
   );

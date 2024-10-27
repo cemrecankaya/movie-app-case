@@ -58,121 +58,181 @@ function Movies() {
       </div>
 
       <div className="movie-detail-header">
-        <h1>{movie?.Title}</h1>
-        <div className="movie-ratings">
-          <label htmlFor="ratings">IMDB Ratings</label>
-          <span id="ratings">
-            {movie?.imdbRating}&nbsp; <span>/10</span>
-          </span>
-        </div>
+        {loading ? (
+          <>
+            <div className="skeleton" style={{ width: "80%", height: "100px" }} />
+            <div className="skeleton" style={{ width: "20%", height: "100px" }} />
+          </>
+        ) : (
+          <>
+            <h1>{movie?.Title}</h1>
+            <div className="movie-ratings">
+              <label htmlFor="ratings">IMDB Ratings</label>
+              <span id="ratings">
+                {movie?.imdbRating}&nbsp; <span>/10</span>
+              </span>
+            </div>
+          </>
+        )}
       </div>
 
       <div className="movie-detail-content">
-        {movie?.Poster !== "N/A" && movie?.Poster ? (
+        {loading ? (
+          <div
+            className="skeleton"
+            style={{ maxWidth: "300px", width: "100%", aspectRatio: "2/3", height: "fit-content" }}
+          />
+        ) : movie?.Poster !== "N/A" && movie?.Poster ? (
           <img className="movie-detail-poster" src={movie?.Poster} alt={movie?.Poster} />
         ) : (
           <img className="movie-detail-poster" src={PosterNotFound} alt={movie?.Poster} />
         )}
         <div className="movie-detail-information">
-          <div className="section">
-            <span className="value">{movie?.Plot || "-"}</span>
-          </div>
-
+          {loading ? (
+            <div className="skeleton" style={{ width: "100%", height: "60px" }} />
+          ) : (
+            <div className="section">
+              <span className="value">{movie?.Plot || "-"}</span>
+            </div>
+          )}
           <div className="divider" />
 
-          <div className="section">
-            <label htmlFor="director">Director:</label>
-            <span id="director" className="value">
-              {movie?.Director || "-"}
-            </span>
-          </div>
+          {loading ? (
+            <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+          ) : (
+            <div className="section">
+              <label htmlFor="director">Director:</label>
+              <span id="director" className="value">
+                {movie?.Director || "-"}
+              </span>
+            </div>
+          )}
 
-          <div className="section">
-            <label htmlFor="writer">Writer:</label>
-            <span id="writer" className="value">
-              {movie?.Writer || "-"}
-            </span>
-          </div>
+          {loading ? (
+            <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+          ) : (
+            <div className="section">
+              <label htmlFor="writer">Writer:</label>
+              <span id="writer" className="value">
+                {movie?.Writer || "-"}
+              </span>
+            </div>
+          )}
 
-          <div className="section">
-            <label htmlFor="actors">Stars:</label>
-            <span id="actors" className="value">
-              {movie?.Actors || "-"}
-            </span>
+          {loading ? (
+            <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+          ) : (
+            <div className="section">
+              <label htmlFor="actors">Stars:</label>
+              <span id="actors" className="value">
+                {movie?.Actors || "-"}
+              </span>
+            </div>
+          )}
+
+          <div className="row">
+            {loading ? (
+              <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+            ) : (
+              <div className="section">
+                <label htmlFor="awards">Type:</label>
+                <span id="awards" style={{ textTransform: "capitalize" }} className="value">
+                  {movie?.Type || "-"}
+                </span>
+              </div>
+            )}
+
+            {loading ? (
+              <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+            ) : (
+              <div className="section">
+                <label htmlFor="genre">Genre:</label>
+                <span id="genre" className="value">
+                  {movie?.Genre || "-"}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="row">
-            <div className="section">
-              <label htmlFor="awards">Type:</label>
-              <span id="awards" style={{ textTransform: "capitalize" }} className="value">
-                {movie?.Type || "-"}
-              </span>
-            </div>
+            {loading ? (
+              <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+            ) : (
+              <div className="section">
+                <label htmlFor="release">Release date:</label>
+                <span id="release" className="value">
+                  {movie?.Released ? format(new Date(movie.Released), "dd MMMM yyyy") : "-"}
+                </span>
+              </div>
+            )}
 
-            <div className="section">
-              <label htmlFor="genre">Genre:</label>
-              <span id="genre" className="value">
-                {movie?.Genre || "-"}
-              </span>
-            </div>
+            {loading ? (
+              <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+            ) : (
+              <div className="section">
+                <label htmlFor="runtime">Runtime:</label>
+                <span id="runtime" className="value">
+                  {movie?.Runtime || "-"}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="row">
-            <div className="section">
-              <label htmlFor="release">Release date:</label>
-              <span id="release" className="value">
-                {movie?.Released ? format(new Date(movie.Released), "dd MMMM yyyy") : "-"}
-              </span>
-            </div>
-
-            <div className="section">
-              <label htmlFor="runtime">Runtime:</label>
-              <span id="runtime" className="value">
-                {movie?.Runtime || "-"}
-              </span>
-            </div>
-          </div>
-
-          <div className="row">
-            {movie?.Country && (
+            {loading ? (
+              <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+            ) : (
               <div className="section">
                 <label htmlFor="country">Country:</label>
                 <span id="country" className="value">
-                  {movie.Country}
+                  {movie?.Country || "-"}
                 </span>
               </div>
             )}
 
-            {movie?.Language && (
+            {loading ? (
+              <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+            ) : (
               <div className="section">
                 <label htmlFor="language">Language:</label>
                 <span id="language" className="value">
-                  {movie.Language}
+                  {movie?.Language || "-"}
                 </span>
               </div>
             )}
           </div>
 
-          <div className="section">
-            <label htmlFor="boxoffice">BoxOffice:</label>
-            <span id="boxoffice" className="value">
-              {movie?.BoxOffice || "-"}
-            </span>
-          </div>
+          {loading ? (
+            <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+          ) : (
+            <div className="section">
+              <label htmlFor="boxoffice">BoxOffice:</label>
+              <span id="boxoffice" className="value">
+                {movie?.BoxOffice || "-"}
+              </span>
+            </div>
+          )}
+          {loading ? (
+            <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+          ) : (
+            <div className="section">
+              <label htmlFor="rated">Certificate:</label>
+              <span id="rated" style={{ textTransform: "capitalize" }} className="value">
+                {movie?.Rated || "-"}
+              </span>
+            </div>
+          )}
 
-          <div className="section">
-            <label htmlFor="rated">Certificate:</label>
-            <span id="rated" style={{ textTransform: "capitalize" }} className="value">
-              {movie?.Rated || "-"}
-            </span>
-          </div>
-
-          <div className="section">
-            <label htmlFor="awards">Awards:</label>
-            <span id="awards" className="value">
-              {movie?.Awards || "-"}
-            </span>
-          </div>
+          {loading ? (
+            <div className="skeleton" style={{ width: "100%", height: "30px" }} />
+          ) : (
+            <div className="section">
+              <label htmlFor="awards">Awards:</label>
+              <span id="awards" className="value">
+                {movie?.Awards || "-"}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

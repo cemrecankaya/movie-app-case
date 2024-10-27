@@ -12,8 +12,8 @@ function Select({ value, children, onChange, ...props }: React.HTMLProps<HTMLSel
   }
 
   return (
-    <div className="select-wrapper">
-      <select ref={selectRef} className="select" value={value} onChange={handleChangeMiddleware} {...props}>
+    <div className="custom-select-wrapper">
+      <select ref={selectRef} className="custom-select" value={value} onChange={handleChangeMiddleware} {...props}>
         {children}
       </select>
       <div className="select-arrow">

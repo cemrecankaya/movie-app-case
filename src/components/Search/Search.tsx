@@ -28,7 +28,7 @@ export default function Search({ loading, value, defaultValue, onClear, onSearch
   }
 
   return (
-    <div className="input-container">
+    <div className="search-input-container">
       <input
         onKeyDown={handleKeyDown}
         placeholder="Search..."

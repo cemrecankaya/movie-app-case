@@ -7,7 +7,7 @@ export interface IButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTM
 
 export default function Button({ children, isStatic = false, ...props }: IButtonProps) {
   return (
-    <button className={isStatic ? "static" : ""} {...props}>
+    <button className={`custom-button${isStatic ? " static" : ""}`} {...props}>
       {children}
     </button>
   );

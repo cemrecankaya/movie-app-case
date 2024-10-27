@@ -135,3 +135,28 @@
     }
   }
 }
+
+@mixin background-gradient {
+  background: linear-gradient(90deg, #c3c3c3, #6c6c6c, #c3c3c3, #6c6c6c, #c3c3c3);
+  background-size: 500% 500%;
+}
+
+.skeleton {
+  opacity: 0.7;
+  border-radius: 4px;
+  background-color: #a2a2a2;
+  @include background-gradient;
+  animation: skeleton 4s infinite ease;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
